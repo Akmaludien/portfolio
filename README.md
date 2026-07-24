@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Akmaludien Ramadhan
+
+Personal portfolio of **Akmaludien Ramadhan**, an AI Software Engineer building intelligent products with machine learning, modern web technologies, and agentic AI.
+
+Built with [Next.js](https://nextjs.org) 16, React 19, TypeScript 5, and Tailwind CSS 4. Animated with Framer Motion. Content driven by [Career OS](https://github.com/Akmaludien/portfolio) — a documentation-first workflow where canonical Markdown profiles generate all portfolio content.
+
+**Live site:** [akmaludien.dev](https://akmaludien.dev)
+
+---
+
+## Sections
+
+- **Hero** — professional identity, headline, key actions
+- **Featured Projects** — flagship work (Rainfall Prediction System, SKDQuest)
+- **Journey** — career timeline from Instrumentation Engineering through AI Software Engineering
+- **Experience** — verified professional roles (Tutor, MBKM Internship, Research, Product)
+- **Skills** — AI/ML, Frontend, Backend, Database, DevOps, Professional
+- **Contact** — form (when configured) or mailto fallback
+- **Footer** — tagline, copyright, Career OS attribution
+
+## Tech Stack
+
+| Layer | Technologies |
+|---|---|
+| Framework | Next.js 16 (Turbopack) |
+| Language | TypeScript 5 |
+| UI | Tailwind CSS 4, Framer Motion |
+| Fonts | Geist (Vercel) |
+| Icons | Inline SVG |
+| Email | Resend (optional, form fallback to mailto) |
+
+## Project Structure
+
+```
+portfolio/
+├── app/
+│   ├── api/contact/       — contact form API route (Resend + health check)
+│   ├── globals.css        — global styles, theme tokens
+│   ├── layout.tsx         — root layout, metadata, fonts
+│   ├── page.tsx           — section composition
+│   └── favicon.png        — brand favicon
+├── components/
+│   ├── common/Header.tsx  — navigation bar
+│   ├── sections/          — Hero, FeaturedProjects, Journey, Experience, Skills, Contact, Footer
+│   └── ui/                — Button, Badge, Card
+├── data/                  — content, projects, journey, experience, skills
+├── lib/                   — types, constants, animations, utils
+├── public/
+│   └── images/            — photos, screenshots, logo assets
+├── profile/               — Career OS canonical profile (11 Markdown files)
+├── projects/              — Career OS project documentation
+└── docs/                  — PRD, design specs, assets
+```
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Development server (Turbopack) |
+| `npm run build` | Production build |
+| `npm run start` | Start production server |
+| `npm run lint` | ESLint check |
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Deploy to [Vercel](https://vercel.com) from the Git repository.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Set `RESEND_API_KEY` as an environment variable to enable the contact form; without it the form shows a mailto fallback.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Branding
 
-## Deploy on Vercel
+- **Logo:** `public/images/logo.png` (1254×1254) — used as navbar icon, favicon, and OG image
+- **Favicon:** `public/favicon.png` (48×48)
+- **OG Image:** `public/images/logo-og.png` (1200×630)
+- **Primary identity:** AI Software Engineer
+- **Social:** [GitHub](https://github.com/Akmaludien) · [LinkedIn](https://linkedin.com/in/akmaludien-ramadhan-772408193) · [Instagram](https://instagram.com/akmaldnrmdhn)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Career OS
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This portfolio is powered by [Career OS](https://github.com/Akmaludien/portfolio) — a documentation-first system where canonical Markdown files serve as the single source of truth for all career content. Profile data lives in `profile/` and project details in `projects/`, both formatted for human readability and AI-assisted generation.
+
+---
+
+**License:** MIT
