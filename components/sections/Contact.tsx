@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { content } from "@/data/content";
@@ -10,14 +10,6 @@ import { slideUpVariants, staggerContainer } from "@/lib/animations";
 export function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [emailConfigured, setEmailConfigured] = useState(false);
-
-  useEffect(() => {
-    fetch("/api/contact/health")
-      .then((r) => r.json())
-      .then((d) => setEmailConfigured(d.configured === true))
-      .catch(() => setEmailConfigured(false));
-  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -44,136 +36,147 @@ export function Contact() {
       aria-labelledby="contact-heading"
       className="mx-auto max-w-6xl px-4 py-24 md:px-8"
     >
-      <motion.h2
-        id="contact-heading"
-        variants={slideUpVariants}
+      <motion.div
+        className="mx-auto max-w-2xl text-center"
+        variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
-        className="mb-4 text-2xl font-bold md:text-3xl"
       >
-        {content.contact.headline}
-      </motion.h2>
-
-      <motion.p
-        variants={slideUpVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="mb-12 max-w-xl text-text-secondary"
-      >
-        {content.contact.subheading}
-      </motion.p>
-
-      {emailConfigured ? (
-        <motion.form
-          onSubmit={handleSubmit}
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="mx-auto mb-16 max-w-lg space-y-4"
+        <motion.h2
+          id="contact-heading"
+          variants={slideUpVariants}
+          className="text-2xl font-bold md:text-3xl"
         >
-          <motion.div variants={slideUpVariants}>
-            <label htmlFor="name" className="sr-only">
+          {content.contact.headline}
+        </motion.h2>
+        <motion.p
+          variants={slideUpVariants}
+          className="mt-2 text-lg text-text-secondary"
+        >
+          {content.contact.subheading}
+        </motion.p>
+        <motion.p
+          variants={slideUpVariants}
+          className="mt-2 text-sm text-text-secondary"
+        >
+          {content.contact.formDescription}
+        </motion.p>
+
+        <motion.form
+          variants={slideUpVariants}
+          onSubmit={handleSubmit}
+          className="mt-8 flex flex-col gap-4 text-left"
+        >
+          <div>
+            <label
+              htmlFor="name"
+              className="mb-1 block text-sm font-medium text-text-secondary"
+            >
               Name
             </label>
             <input
               id="name"
               type="text"
-              placeholder="Name"
               required
+              aria-required="true"
               value={formData.name}
               onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
+                setFormData((d) => ({ ...d, name: e.target.value }))
               }
-              className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full rounded-lg border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-text-secondary focus:border-accent focus:outline-none"
+              placeholder="Your name"
             />
-          </motion.div>
-          <motion.div variants={slideUpVariants}>
-            <label htmlFor="email-input" className="sr-only">
+          </div>
+          <div>
+            <label
+              htmlFor="email"
+              className="mb-1 block text-sm font-medium text-text-secondary"
+            >
               Email
             </label>
             <input
-              id="email-input"
+              id="email"
               type="email"
-              placeholder="Email"
               required
+              aria-required="true"
               value={formData.email}
               onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
+                setFormData((d) => ({ ...d, email: e.target.value }))
               }
-              className="w-full rounded-xl border border-border bg-card px-4 py-3 text-sm placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full rounded-lg border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-text-secondary focus:border-accent focus:outline-none"
+              placeholder="you@example.com"
             />
-          </motion.div>
-          <motion.div variants={slideUpVariants}>
-            <label htmlFor="message-input" className="sr-only">
+          </div>
+          <div>
+            <label
+              htmlFor="message"
+              className="mb-1 block text-sm font-medium text-text-secondary"
+            >
               Message
             </label>
             <textarea
-              id="message-input"
-              placeholder="Message"
+              id="message"
               required
+              aria-required="true"
               rows={4}
               value={formData.message}
               onChange={(e) =>
-                setFormData({ ...formData, message: e.target.value })
+                setFormData((d) => ({ ...d, message: e.target.value }))
               }
-              className="w-full resize-none rounded-xl border border-border bg-card px-4 py-3 text-sm placeholder:text-text-secondary focus:outline-none focus:ring-2 focus:ring-accent"
+              className="w-full resize-none rounded-lg border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-text-secondary focus:border-accent focus:outline-none"
+              placeholder="Your message..."
             />
-          </motion.div>
-          <motion.div variants={slideUpVariants}>
-            <Button type="submit" disabled={status === "sending"} className="w-full">
-              {status === "sending"
-                ? "Sending..."
-                : status === "sent"
-                  ? "Sent!"
-                  : status === "error"
-                    ? "Failed — Try Again"
-                    : "Send Message"}
-            </Button>
-          </motion.div>
+          </div>
+
+          <Button
+            type="submit"
+            disabled={status === "sending"}
+            className="self-start"
+          >
+            {status === "sending" ? "Sending..." : "Send Message"}
+          </Button>
+
+          {status === "sent" && (
+            <p
+              className="text-sm text-green-400"
+              role="status"
+              aria-live="polite"
+            >
+              Message sent! I&apos;ll get back to you soon.
+            </p>
+          )}
+          {status === "error" && (
+            <p className="text-sm text-red-400" role="alert">
+              Something went wrong. Try emailing me directly at{" "}
+              <a
+                href={`mailto:${SOCIAL_LINKS.email}`}
+                className="underline underline-offset-2"
+              >
+                {SOCIAL_LINKS.email}
+              </a>
+              .
+            </p>
+          )}
         </motion.form>
-      ) : (
+
         <motion.div
           variants={slideUpVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="mx-auto mb-16 max-w-lg rounded-xl border border-border bg-card p-6 text-center"
+          className="mt-8 flex flex-wrap items-center justify-center gap-4"
         >
-          <p className="text-sm text-text-secondary">
-            Have a question or want to work together?{" "}
-            <a
-              href={`mailto:${SOCIAL_LINKS.email}`}
-              className="text-accent underline underline-offset-2 hover:text-accent/80"
-            >
-              Send me an email
-            </a>{" "}
-            or connect through the links below.
-          </p>
+          <Button variant="primary" href={`mailto:${SOCIAL_LINKS.email}`}>
+            Email
+          </Button>
+          <Button variant="secondary" href={SOCIAL_LINKS.github}>
+            GitHub
+          </Button>
+          <Button variant="secondary" href={SOCIAL_LINKS.linkedin}>
+            LinkedIn
+          </Button>
+          <Button variant="secondary" href={SOCIAL_LINKS.instagram}>
+            Instagram
+          </Button>
         </motion.div>
-      )}
-
-      <motion.div
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="mt-8 flex flex-wrap items-center justify-center gap-4"
-      >
-        <Button variant="secondary" href={`mailto:${SOCIAL_LINKS.email}`}>
-          Email
-        </Button>
-        <Button variant="secondary" href={SOCIAL_LINKS.github}>
-          GitHub
-        </Button>
-        <Button variant="secondary" href={SOCIAL_LINKS.linkedin}>
-          LinkedIn
-        </Button>
-        <Button variant="secondary" href={SOCIAL_LINKS.instagram}>
-          Instagram
-        </Button>
       </motion.div>
     </section>
   );
