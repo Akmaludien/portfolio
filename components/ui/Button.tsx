@@ -12,10 +12,12 @@ type ButtonProps = {
 );
 
 const variantStyles: Record<ButtonVariant, string> = {
+  // Primary action = neutral light fill; accent color is reserved for
+  // links/status, not for the loudest button on the page.
   primary:
-    "bg-accent-blue text-white hover:bg-accent-blue/90 border border-transparent",
+    "bg-foreground text-background hover:opacity-90 border border-transparent",
   secondary:
-    "bg-transparent text-accent border border-accent hover:bg-accent/10",
+    "bg-transparent text-foreground border border-border-strong hover:border-accent/50 hover:text-accent",
   ghost:
     "bg-transparent text-text-secondary hover:text-foreground border border-transparent hover:border-border",
 };

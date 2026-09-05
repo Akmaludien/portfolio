@@ -1,9 +1,9 @@
 export const content = {
   hero: {
-    headline:
-      "AI Software Engineer building intelligent products with machine learning and agentic AI.",
+    eyebrow: "Akmaludien Ramadhan",
+    headline: "Building intelligent products with machine learning and agentic AI.",
     supporting:
-      "From instrumentation engineering to AI — I solve real-world problems by building complete software products, not just models. Always learning, always shipping.",
+      "From instrumentation engineering to AI — I build the whole product, not just the model: data pipelines, backends, and the interfaces people actually use.",
     cta1: "View Projects",
     cta2: "Download Resume",
   },

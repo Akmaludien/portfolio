@@ -30,11 +30,17 @@ export function Contact() {
     }
   }
 
+  const socials = [
+    { label: "GitHub", href: SOCIAL_LINKS.github },
+    { label: "LinkedIn", href: SOCIAL_LINKS.linkedin },
+    { label: "Instagram", href: SOCIAL_LINKS.instagram },
+  ] as const;
+
   return (
     <section
       id="contact"
       aria-labelledby="contact-heading"
-      className="mx-auto max-w-6xl px-4 py-24 md:px-8"
+      className="mx-auto max-w-6xl px-4 py-28 md:px-8"
     >
       <motion.div
         className="mx-auto max-w-2xl text-center"
@@ -84,7 +90,7 @@ export function Contact() {
               onChange={(e) =>
                 setFormData((d) => ({ ...d, name: e.target.value }))
               }
-              className="w-full rounded-lg border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-text-secondary focus:border-accent focus:outline-none"
+              className="w-full rounded-lg border border-border bg-panel px-4 py-3 text-sm text-foreground placeholder:text-text-secondary focus:border-accent focus:outline-none"
               placeholder="Your name"
             />
           </div>
@@ -104,7 +110,7 @@ export function Contact() {
               onChange={(e) =>
                 setFormData((d) => ({ ...d, email: e.target.value }))
               }
-              className="w-full rounded-lg border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-text-secondary focus:border-accent focus:outline-none"
+              className="w-full rounded-lg border border-border bg-panel px-4 py-3 text-sm text-foreground placeholder:text-text-secondary focus:border-accent focus:outline-none"
               placeholder="you@example.com"
             />
           </div>
@@ -124,7 +130,7 @@ export function Contact() {
               onChange={(e) =>
                 setFormData((d) => ({ ...d, message: e.target.value }))
               }
-              className="w-full resize-none rounded-lg border border-border bg-card px-4 py-3 text-sm text-foreground placeholder:text-text-secondary focus:border-accent focus:outline-none"
+              className="w-full resize-none rounded-lg border border-border bg-panel px-4 py-3 text-sm text-foreground placeholder:text-text-secondary focus:border-accent focus:outline-none"
               placeholder="Your message..."
             />
           </div>
@@ -160,22 +166,25 @@ export function Contact() {
           )}
         </motion.form>
 
+        {/* One quiet line instead of a four-button CTA pileup */}
         <motion.div
           variants={slideUpVariants}
-          className="mt-8 flex flex-wrap items-center justify-center gap-4"
+          className="mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-text-secondary"
         >
-          <Button variant="primary" href={`mailto:${SOCIAL_LINKS.email}`}>
-            Email
-          </Button>
-          <Button variant="secondary" href={SOCIAL_LINKS.github}>
-            GitHub
-          </Button>
-          <Button variant="secondary" href={SOCIAL_LINKS.linkedin}>
-            LinkedIn
-          </Button>
-          <Button variant="secondary" href={SOCIAL_LINKS.instagram}>
-            Instagram
-          </Button>
+          <span>Prefer social? Find me on</span>
+          {socials.map((s, i) => (
+            <span key={s.label} className="flex items-center gap-x-5">
+              {i > 0 && <span aria-hidden="true" className="text-border-strong">·</span>}
+              <a
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="transition-colors duration-200 hover:text-accent"
+              >
+                {s.label}
+              </a>
+            </span>
+          ))}
         </motion.div>
       </motion.div>
     </section>

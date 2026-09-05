@@ -13,9 +13,6 @@ export function Footer() {
       <p className="mt-2 text-xs text-text-secondary/60">
         &copy; {new Date().getFullYear()} {SITE_NAME}
       </p>
-      <p className="mt-1 text-[10px] text-text-secondary/40">
-        Built with Career OS documentation-first workflow
-      </p>
     </footer>
   );
 }

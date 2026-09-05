@@ -83,7 +83,7 @@ export function Header() {
                   href={link.href}
                   className={cn(
                     "block rounded-lg px-4 py-3 text-sm text-text-secondary",
-                    "transition-colors duration-200 hover:bg-card hover:text-foreground"
+                    "transition-colors duration-200 hover:bg-panel-2 hover:text-foreground"
                   )}
                   onClick={() => setMobileOpen(false)}
                 >

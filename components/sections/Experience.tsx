@@ -11,7 +11,7 @@ export function Experience() {
     <section
       id="experience"
       aria-labelledby="experience-heading"
-      className="mx-auto max-w-6xl px-4 py-24 md:px-8"
+      className="mx-auto max-w-6xl px-4 py-20 md:px-8"
     >
       <motion.h2
         id="experience-heading"

@@ -44,10 +44,18 @@ export function Hero() {
         initial="hidden"
         animate="visible"
       >
+        {/* Mono eyebrow: the name holds the identity line, the h1 carries the statement */}
+        <motion.p
+          variants={slideUpVariants}
+          className="font-mono text-xs font-medium uppercase tracking-[0.18em] text-text-secondary"
+        >
+          {content.hero.eyebrow}
+        </motion.p>
+
         <motion.h1
           id="hero-heading"
           variants={slideUpVariants}
-          className="text-3xl font-bold leading-tight tracking-tight md:text-4xl lg:text-5xl"
+          className="max-w-xl text-3xl font-bold leading-tight tracking-tight text-balance md:text-4xl lg:text-5xl"
         >
           {content.hero.headline}
         </motion.h1>
@@ -112,7 +120,7 @@ export function Hero() {
           width={400}
           height={533}
           priority
-          className="rounded-2xl object-cover"
+          className="rounded-2xl border border-border object-cover"
         />
       </motion.div>
     </section>
