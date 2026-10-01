@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { content } from "@/data/content";
-import { SOCIAL_LINKS } from "@/lib/constants";
+import { FIVERR_GIG_URL, SOCIAL_LINKS } from "@/lib/constants";
 import { slideUpVariants, fadeInVariants, staggerContainer } from "@/lib/animations";
 
 const stats = [
@@ -59,10 +59,17 @@ export function Hero() {
           {content.hero.eyebrow}
         </motion.p>
 
-        <motion.div variants={slideUpVariants} className="inline-flex w-fit items-center gap-2 rounded-md border border-green-400/25 bg-green-400/10 px-3 py-1.5 text-xs font-medium text-green-300">
+        <motion.a
+          variants={slideUpVariants}
+          href={FIVERR_GIG_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Hire Akmal on Fiverr (opens in a new tab)"
+          className="inline-flex w-fit items-center gap-2 rounded-md border border-green-400/25 bg-green-400/10 px-3 py-1.5 text-xs font-medium text-green-300 transition-colors hover:border-green-300/50 hover:text-green-200"
+        >
           <span className="h-2 w-2 rounded-full bg-green-400" aria-hidden="true" />
           Available for freelance work
-        </motion.div>
+        </motion.a>
 
         <motion.h1
           id="hero-heading"
@@ -81,6 +88,15 @@ export function Hero() {
 
         <motion.div variants={slideUpVariants} className="flex flex-wrap gap-4">
           <Button href="#projects">{content.hero.cta1}</Button>
+          <Button
+            variant="secondary"
+            href={FIVERR_GIG_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Hire Akmal on Fiverr (opens in a new tab)"
+          >
+            Hire Me on Fiverr
+          </Button>
           <Button variant="secondary" href="/resume.pdf" download>
             {content.hero.cta2}
           </Button>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { content } from "@/data/content";
-import { EMAIL, SOCIAL_LINKS } from "@/lib/constants";
+import { EMAIL, FIVERR_GIG_URL, SOCIAL_LINKS } from "@/lib/constants";
 import { slideUpVariants, staggerContainer } from "@/lib/animations";
 
 export function Contact() {
@@ -30,10 +30,11 @@ export function Contact() {
     }
   }
 
-  const socials = [
+  const socials: Array<{ label: string; href: string; ariaLabel?: string }> = [
     { label: "GitHub", href: SOCIAL_LINKS.github },
     { label: "LinkedIn", href: SOCIAL_LINKS.linkedin },
     { label: "Instagram", href: SOCIAL_LINKS.instagram },
+    { label: "Fiverr", href: FIVERR_GIG_URL, ariaLabel: "Hire me on Fiverr (opens in a new tab)" },
   ] as const;
 
   return (
@@ -186,6 +187,7 @@ export function Contact() {
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={s.ariaLabel ?? s.label}
                 className="transition-colors duration-200 hover:text-accent"
               >
                 {s.label}
