@@ -4,7 +4,7 @@ export interface Project {
   summary: string;
   thumbnail: string;
   technologies: string[];
-  viewProjectUrl: string;
+  viewProjectUrl?: string;
   githubUrl: string;
 }
 

@@ -28,7 +28,7 @@ export const experiences: Experience[] = [
   {
     id: "product",
     category: "Product",
-    title: "Co-founder & Lead Product Engineer — SKDQuest",
+    title: "Founder & Lead Product Engineer — SKDQuest",
     description:
       "Product planning, system architecture, frontend development, backend integration, database design, and feature implementation for a gamified SKD learning platform.",
     period: "2025 – Present",

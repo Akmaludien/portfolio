@@ -1,6 +1,7 @@
 import { Header } from "@/components/common/Header";
 import { Hero } from "@/components/sections/Hero";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
+import { Services } from "@/components/sections/Services";
 import { Journey } from "@/components/sections/Journey";
 import { Experience } from "@/components/sections/Experience";
 import { Skills } from "@/components/sections/Skills";
@@ -14,6 +15,7 @@ export default function Home() {
       <main id="main" role="main">
         <Hero />
         <FeaturedProjects />
+        <Services />
         <Journey />
         <Experience />
         <Skills />

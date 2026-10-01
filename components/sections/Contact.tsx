@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import { content } from "@/data/content";
-import { SOCIAL_LINKS } from "@/lib/constants";
+import { EMAIL, SOCIAL_LINKS } from "@/lib/constants";
 import { slideUpVariants, staggerContainer } from "@/lib/animations";
 
 export function Contact() {
@@ -67,6 +67,13 @@ export function Contact() {
           className="mt-2 text-sm text-text-secondary"
         >
           {content.contact.formDescription}
+        </motion.p>
+
+        <motion.p variants={slideUpVariants} className="mt-4 text-sm text-text-secondary">
+          Or email me directly at{" "}
+          <a href={`mailto:${EMAIL}`} className="text-foreground underline underline-offset-4 transition-colors hover:text-accent">
+            {EMAIL}
+          </a>
         </motion.p>
 
         <motion.form

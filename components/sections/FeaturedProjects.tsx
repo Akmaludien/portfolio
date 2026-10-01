@@ -59,15 +59,17 @@ export function FeaturedProjects() {
               </div>
 
               <div className="mt-auto flex flex-wrap gap-3 pt-2">
+                {project.viewProjectUrl && (
+                  <Button
+                    variant="secondary"
+                    href={project.viewProjectUrl}
+                    className="text-xs px-4 py-2"
+                  >
+                    Live Demo
+                  </Button>
+                )}
                 <Button
                   variant="secondary"
-                  href={project.viewProjectUrl}
-                  className="text-xs px-4 py-2"
-                >
-                  View Project
-                </Button>
-                <Button
-                  variant="ghost"
                   href={project.githubUrl}
                   className="text-xs px-4 py-2"
                 >

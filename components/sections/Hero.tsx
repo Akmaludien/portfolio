@@ -7,6 +7,13 @@ import { content } from "@/data/content";
 import { SOCIAL_LINKS } from "@/lib/constants";
 import { slideUpVariants, fadeInVariants, staggerContainer } from "@/lib/animations";
 
+const stats = [
+  "500+ students taught",
+  "4 institutions + private clients",
+  "5+ projects built",
+  "Building & teaching since 2024",
+] as const;
+
 function GithubIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -51,6 +58,11 @@ export function Hero() {
         >
           {content.hero.eyebrow}
         </motion.p>
+
+        <motion.div variants={slideUpVariants} className="inline-flex w-fit items-center gap-2 rounded-md border border-green-400/25 bg-green-400/10 px-3 py-1.5 text-xs font-medium text-green-300">
+          <span className="h-2 w-2 rounded-full bg-green-400" aria-hidden="true" />
+          Available for freelance work
+        </motion.div>
 
         <motion.h1
           id="hero-heading"
@@ -105,6 +117,12 @@ export function Hero() {
           >
             <InstagramIcon />
           </a>
+        </motion.div>
+
+        <motion.div variants={slideUpVariants} className="grid max-w-xl grid-cols-2 gap-x-6 gap-y-3 border-t border-border pt-5 sm:grid-cols-4">
+          {stats.map((stat) => (
+            <p key={stat} className="text-xs leading-relaxed text-text-secondary">{stat}</p>
+          ))}
         </motion.div>
       </motion.div>
 
